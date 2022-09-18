@@ -1,0 +1,15 @@
+Como ler a imagem em python - Python exemplo de código
+https://pt.code-paper.com/python/examples-how-to-read-image-in-python
+
+Carregando e Manipulando Imagens em Python - akira - ciência da computação
+https://akiradev.netlify.app/posts/manipulando-imagens-python/
+
+Livro-Introdução-a-Visão-Computacional-com-Python-e-OpenCV-3.pdf
+https://professor.luzerna.ifc.edu.br/ricardo-antonello/wp-content/uploads/sites/8/2017/02/Livro-Introdu%C3%A7%C3%A3o-a-Vis%C3%A3o-Computacional-com-Python-e-OpenCV-3.pdf
+
+🥇 Corte de imagem usando PyGame - Código Fonte
+https://codigofonte.org/corte-de-imagem-usando-pygame/
+
+pygame — pygame v2.1.1 documentation
+https://www.pygame.org/docs/ref/pygame.html
+
