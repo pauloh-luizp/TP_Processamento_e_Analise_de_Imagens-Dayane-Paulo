@@ -146,4 +146,9 @@ button_exit.grid(column = 1,row = 3)
    
 window.mainloop() 
 
+
+### Abrindo o explorador de aquivos
+import easygui
+file = easygui.fileopenbox()
+
 '''

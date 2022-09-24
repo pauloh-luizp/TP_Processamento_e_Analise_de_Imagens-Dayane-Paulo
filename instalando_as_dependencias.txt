@@ -1,3 +1,7 @@
 pip install Pillow
 pip install opencv-python
 pip install pygame
+pip install easygui
+
+#Para o Tkinter:
+sudo apt-get install python3-tk

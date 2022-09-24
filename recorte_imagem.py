@@ -15,7 +15,6 @@ import pygame, sys
 from PIL import Image
 pygame.init()
 
-
 def displayImage(screen, px, topleft, prior): 
     x, y = topleft
     #Obtem a posição do cursor do Mouse
@@ -70,19 +69,3 @@ def mainLoop(screen, px):
         if topleft:
             prior = displayImage(screen, px, topleft, prior)
     return ( topleft + bottomright )
-
-if __name__ == "__main__":
-    input_loc = 'image/LanciaRally037.jpg'
-    output_loc = 'image/out.jpg'
-    screen, px = setup(input_loc)
-    left, upper, right, lower = mainLoop(screen, px)
-
-    #Garante que a imagem de saida tenha altura e largura positivas
-    if right < left:
-        left, right = right, left
-    if lower < upper:
-        lower, upper = upper, lower
-    im = Image.open(input_loc)
-    im = im.crop(( left, upper, right, lower))
-    pygame.display.quit()
-    im.save(output_loc)
