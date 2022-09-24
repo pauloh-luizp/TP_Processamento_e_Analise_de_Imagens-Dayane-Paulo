@@ -13,3 +13,9 @@ https://codigofonte.org/corte-de-imagem-usando-pygame/
 pygame — pygame v2.1.1 documentation
 https://www.pygame.org/docs/ref/pygame.html
 
+Explorador de arquivos em Python usando Tkinter – Acervo Lima
+https://acervolima.com/explorador-de-arquivos-em-python-usando-tkinter/
+
+Python fileopenbox Examples, easygui.fileopenbox Python Examples - HotExamples
+https://python.hotexamples.com/examples/easygui/-/fileopenbox/python-fileopenbox-function-examples.html
+
