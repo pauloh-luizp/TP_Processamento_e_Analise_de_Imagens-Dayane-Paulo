@@ -28,4 +28,4 @@ if __name__ == '__main__':
     recorte_imagem.pygame.display.quit()
 
     #Salvando a imagem recortada
-    im.save(caminho_compelto_img_recortada )
+    im.save(caminho_compelto_img_recortada)
