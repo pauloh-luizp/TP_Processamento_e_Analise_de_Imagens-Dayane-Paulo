@@ -19,3 +19,6 @@ https://acervolima.com/explorador-de-arquivos-em-python-usando-tkinter/
 Python fileopenbox Examples, easygui.fileopenbox Python Examples - HotExamples
 https://python.hotexamples.com/examples/easygui/-/fileopenbox/python-fileopenbox-function-examples.html
 
+get color of pixel on screen python Code Example
+https://www.codegrepper.com/code-examples/python/get+color+of+pixel+on+screen+python
+
