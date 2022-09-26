@@ -1,39 +1,55 @@
 import os
 
-def test(x0_a, y0_a, largura_b, altura_b):
-  #print("x_a, y_a = (" + str(x0_a) + "," + str(y0_a) + ")")
-  #print("x_b, y_b = (" + str(0) + "," + str(0) + ")\n")
+x0 = 2
+y0 = 0
+largura_b = 5
+altura_b = 5
 
-  for i in range(largura_b):
-    x_a = x0_a + i
-    for j in range(altura_b):
-      y_a = y0_a + j
-      #if y_a >= 0:
-      with open('result.txt', 'a') as arquivo:
-        print("x_a, y_a = (" + str(x_a) + "," + str(y_a) + ")", file=arquivo)
-        print("x_b, y_b = (" + str(i) + "," + str(j) + ")\n", file=arquivo)
-      #y_a = y0_a + j 
+
+for x in range(x0, x0 + largura_b):
+  for y in range(y0, y0 + largura_b):
+    print("x_a, y_a = (" + str(x) + "," + str(y) + ")")
+
+
+def test(x0_a, y0_a, largura_b, altura_b):
+
+  with open('result.txt', 'a') as arquivo:
+    print("\nFor de fora: x_b, y_b = (" + str(x0_a) + "," + str(y0_a) + ")", file=arquivo)
+    for x in range(x0_a, x0_a + largura_b):
+      for y in range(y0_a, y0_a + altura_b):
+        print("x_a, y_a = (" + str(x) + "," + str(y) + ")", file=arquivo)
 
 if __name__ == '__main__':
   largura_a = 10
   altura_a = 10
   largura_b = 5
   altura_b = 5
-  x0_a = 3
-  y0_a = 3
+  x = 0
+  y = 0
 
-  os.remove("result.txt")
+  #os.remove("result.txt")
 
   #Calculando a diferença das dimensões da imagem A coparada com a B
   dif_lar = largura_a - largura_b
   dif_alt = altura_a - altura_b
   
-  for i in range(dif_lar+1):
-    for j in range(dif_alt+1):
+  chamadas = 0
+
+
+  for i in range(largura_b):
+    x = x + 1
+    test(1,1,largura_b, altura_b)
+    '''
+    for j in range(altura_b):
+      y = y + 1
       #if((x0_a + largura_b <= largura_a) and (y0_a + altura_b <= altura_a)):
-      with open('result.txt', 'a') as arquivo:
-        test(i, j, largura_b, altura_b)
-        print("\nFor de fora: x_b, y_b = (" + str(i) + "," + str(j) + ")", file=arquivo)
+      chamadas = chamadas + 1
+      test(i, j, largura_b, altura_b)
+    '''
+
+  print(x)
+  print(y)
+  print(chamadas)
 
 
 '''

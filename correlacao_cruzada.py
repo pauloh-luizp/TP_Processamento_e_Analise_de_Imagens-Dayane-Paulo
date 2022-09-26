@@ -57,8 +57,8 @@ def normalized_cross_corr(mapa_a, media_a, somatorio_b, dp_a, dp_b,
   somatorio_a = 0
   ccn = 0
 
-  for x_a in range(x0_a + largura_b):
-    for y_a in range(y0_a + altura_b):
+  for x_a in range(x0_a, x0_a + largura_b):
+    for y_a in range(y0_a, y0_a + altura_b):
       somatorio_a = somatorio_a + ((mapa_a[x_a,y_a] - media_a))
       #somatorio = (somatorio + ((mapa_a[x_a,y_a] - media_a)*(mapa_b[i,j] - media_b)))
       #print("x_a, y_a = (" + str(x_a) + "," + str(y_a) + ")", file=arquivo)
