@@ -155,7 +155,7 @@ file = easygui.fileopenbox()
 from PIL import Image
   
 # Create an image as input:
-input_image = Image.new(mode="RGB", size=(400, 400),
+input_image = Image.new(mode="RGB", size=(20, 20),
                         color="blue")
   
 # save the image as "input.png"
