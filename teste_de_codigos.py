@@ -1,14 +1,33 @@
 import os
 
+os.remove("result.txt")
+
+def varrer(x0, y0, largura_b, altura_b):
+  print("\nPara: (" + str(x0) + "," + str(y0) + ")", file=arquivo)
+  for x in range(x0, x0 + largura_b):
+    for y in range(y0, y0 + altura_b):
+      print("x_a, y_a = (" + str(x) + "," + str(y) + ")", file=arquivo)
+
 x0 = 2
 y0 = 0
+largura_a = 10
+altura_a = 10
 largura_b = 5
 altura_b = 5
 
+coordenadas_a = []
 
-for x in range(x0, x0 + largura_b):
-  for y in range(y0, y0 + largura_b):
-    print("x_a, y_a = (" + str(x) + "," + str(y) + ")")
+for i in range(largura_a-largura_b+1):
+  for j in range(altura_a-altura_b+1):
+    coordenadas_a.append((i, j))
+
+with open('result.txt', 'a') as arquivo:
+  #print(str(coordenadas_a) + "\n", file=arquivo)
+
+  for xy in coordenadas_a:
+    varrer(xy[0], xy[1], largura_b, altura_b)
+
+
 
 
 def test(x0_a, y0_a, largura_b, altura_b):
@@ -26,6 +45,8 @@ if __name__ == '__main__':
   altura_b = 5
   x = 0
   y = 0
+
+  
 
   #os.remove("result.txt")
 
