@@ -1,4 +1,7 @@
 import os
+import cv2
+
+from correlacao_cruzada import somatoriob__mb
 
 os.remove("result.txt")
 
@@ -8,35 +11,20 @@ def varrer(x0, y0, largura_b, altura_b):
     for y in range(y0, y0 + altura_b):
       print("x_a, y_a = (" + str(x) + "," + str(y) + ")", file=arquivo)
 
-x0 = 2
-y0 = 0
-largura_a = 10
-altura_a = 10
-largura_b = 5
-altura_b = 5
-
-coordenadas_a = []
-
-for i in range(largura_a-largura_b+1):
-  for j in range(altura_a-altura_b+1):
-    coordenadas_a.append((i, j))
-
-with open('result.txt', 'a') as arquivo:
-  #print(str(coordenadas_a) + "\n", file=arquivo)
-
-  for xy in coordenadas_a:
-    varrer(xy[0], xy[1], largura_b, altura_b)
-
-
+def fooor(x, y):
+  somatorio = 0 
+  for i in range(x):
+    for j in range(y):
+      somatorio = somatorio + 1
+      print("x_a, y_a = (" + str(i) + "," + str(j) + ")", file=arquivo)
+      print(somatorio)
 
 
 def test(x0_a, y0_a, largura_b, altura_b):
-
-  with open('result.txt', 'a') as arquivo:
-    print("\nFor de fora: x_b, y_b = (" + str(x0_a) + "," + str(y0_a) + ")", file=arquivo)
-    for x in range(x0_a, x0_a + largura_b):
-      for y in range(y0_a, y0_a + altura_b):
-        print("x_a, y_a = (" + str(x) + "," + str(y) + ")", file=arquivo)
+  print("\nFor de fora: x_b, y_b = (" + str(x0_a) + "," + str(y0_a) + ")", file=arquivo)
+  for x in range(x0_a, x0_a + largura_b):
+    for y in range(y0_a, y0_a + altura_b):
+      print("x_a, y_a = (" + str(x) + "," + str(y) + ")", file=arquivo)
 
 if __name__ == '__main__':
   largura_a = 10
@@ -46,34 +34,54 @@ if __name__ == '__main__':
   x = 0
   y = 0
 
-  
+  x0 = 2
+  y0 = 0
+  largura_a = 10
+  altura_a = 10
+  largura_b = 5
+  altura_b = 5
+
+  coordenadas_a = []
+
+  for i in range(largura_a-largura_b+1):
+    for j in range(altura_a-altura_b+1):
+      coordenadas_a.append((i, j))
+
+  with open('result.txt', 'a') as arquivo:
+    print("mapa de B", file=arquivo)
+    img = cv2.imread("/home/mostarda/Documentos/Eng_computacao/proc_imagens/TP_PAI-Dayane-Paulo/image/9018291R_recorte.png",0)
+    for i in range (img.shape[0]):
+      for j in range (img.shape[1]):
+        print(img[i][j], file=arquivo)
 
   #os.remove("result.txt")
 
   #Calculando a diferença das dimensões da imagem A coparada com a B
-  dif_lar = largura_a - largura_b
-  dif_alt = altura_a - altura_b
-  
-  chamadas = 0
+    dif_lar = largura_a - largura_b
+    dif_alt = altura_a - altura_b
+    
+    chamadas = 0
+
+    fooor(2,2)
 
 
-  for i in range(largura_b):
-    x = x + 1
-    test(1,1,largura_b, altura_b)
-    '''
-    for j in range(altura_b):
-      y = y + 1
-      #if((x0_a + largura_b <= largura_a) and (y0_a + altura_b <= altura_a)):
-      chamadas = chamadas + 1
-      test(i, j, largura_b, altura_b)
-    '''
+  #for i in range(largura_b):
+    #x = x + 1
+    #test(1,1,largura_b, altura_b)
+    #'''
+    #for j in range(altura_b):
+    #  y = y + 1
+    #  #if((x0_a + largura_b <= largura_a) and (y0_a + altura_b <= altura_a)):
+    #  chamadas = chamadas + 1
+    #  test(i, j, largura_b, altura_b)
+    #'''
 
   print(x)
   print(y)
   print(chamadas)
-
-
 '''
+
+
 ###CORRELACAO_CRUZADA
 
   #mapa, largura, altura, média e desvio padrão da imagem A
