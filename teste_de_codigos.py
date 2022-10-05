@@ -1,31 +1,21 @@
-
 from PIL import Image
-  
-# Create an image as input:
-input_image = Image.new(mode="RGB", size=(400, 400),
-                        color="blue")
-  
-# save the image as "input.png"
-#(not mandatory)
-input_image.save("input", format="png")
-  
-# Extracting pixel map:
-pixel_map = input_image.load()
-  
-# Extracting the width and height
-# of the image:
-width, height = input_image.size
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import numpy as np
+import os
 
 
-for i in range(width):
-  for j in range(height):
-    # getting the RGB pixel value.
-    r, g, b = input_image.getpixel((i, j))
-      
-    # Apply formula of grayscale:
-    grayscale = (0.299*r + 0.587*g + 0.114*b)
+#if __name__ == '__main__':
 
-    # setting the pixel value.
-    pixel_map[i, j] = (int(grayscale), int(grayscale), int(grayscale))
+os.remove("result.txt")
+with open('result.txt', 'w') as arquivo:
 
-    print(pixel_map[i,j])
+  x0=147
+  y0=169
+
+  for x in range(36):
+    x_a = x0 + x
+    for y in range(54):
+      y_a = y0 + y
+      print("mapa_a["+ str(x_a)+ "," + str(y_a) 
+            + "] mapa_b[" + str(x) + "," + str(y) + "]", file=arquivo)
