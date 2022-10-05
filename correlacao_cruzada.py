@@ -1,3 +1,7 @@
+#Componentes do grupo:
+# Dayane Gabriela Santos Cordeiro - 673915 - Engenharia de computação - PUC Minas Coração Eucarístico
+# Paulo Henrique Luiz Pereira - 673667 - Engenharia de computação - PUC Minas Coração Eucarístico
+
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -38,32 +42,30 @@ def desvio_padrao(largura, altura, media, mapa):
   return(dp)
 
 def corr_cruz(y0, x0, dp_a, dp_b, mapa_a, mapa_b,
-              altura_b, largura_b):
+              media_a, media_b, altura_b, largura_b):
 
   somatorio = 0
   ccn = 0
 
   for y in range(altura_b):
-    y_a = y0 + y
     for x in range(largura_b):
-      x_a = x0 + x
-      somatorio = somatorio + ((mapa_a[y_a,x_a] - media_a)*(mapa_b[y,x] - media_b))
+      somatorio = somatorio + ((mapa_a[y0 + y,x0 + x] - media_a)*(mapa_b[y,x] - media_b))
 
   ccn = somatorio / (dp_a * dp_b)
 
   return(ccn)
 
-def posicao_detectada(y0_a, x0_a, altura_b, largura_b, caminho_da_imagem_a):
-  x = np.array(Image.open(caminho_da_imagem_a), dtype=np.uint8) 
+def posicao_detectada(y0_a, x0_a, altura_b, largura_b, caminho_img_a):
+  x = np.array(Image.open(caminho_img_a), dtype=np.uint8) 
   plt.imshow(x)
   fig, ax = plt.subplots(1)
   ax.imshow(x)
-  rect = patches.Rectangle((x0_a, y0_a - altura_b), largura_b, altura_b,
+  rect = patches.Rectangle((x0_a, y0_a), largura_b, altura_b,
                             linewidth=1, edgecolor='r', facecolor="none")
   ax.add_patch(rect)
   plt.show()
 
-
+'''
 if __name__ == "__main__":
   
   os.remove("result.txt")
@@ -71,18 +73,18 @@ if __name__ == "__main__":
   with open('result.txt', 'w') as arquivo:
 
     #mapa, altura, largura, média e desvio padrão da imagem A
-    #caminho_da_imagem_a = "/mnt/da/eng_computacao/processamento_de_imagens/TP/TP_PAI-Dayane-Paulo/image/9018291R.png"
-    caminho_da_imagem_a = "/home/mostarda/Documentos/Eng_computacao/proc_imagens/TP_PAI-Dayane-Paulo/image/9018291R.png"
-    mapa_a = mapa_dos_pixels(caminho_da_imagem_a)
-    altura_a, largura_a = obtendo_dimensoes(caminho_da_imagem_a)
+    caminho_img_a = "/mnt/da/eng_computacao/processamento_de_imagens/TP/TP_PAI-Dayane-Paulo/image/9018291R.png"
+    #caminho_img_a = "/home/mostarda/Documentos/Eng_computacao/proc_imagens/TP_PAI-Dayane-Paulo/image/9018291R.png"
+    mapa_a = mapa_dos_pixels(caminho_img_a)
+    altura_a, largura_a = obtendo_dimensoes(caminho_img_a)
     media_a = np.average(mapa_a)
     dp_a = np.std(mapa_a)
     
     #mapa, altura, largura, média e desvio padrão da imagem B (Região buscada "_recorte")
-    #caminho_da_imagem_b = "/mnt/da/eng_computacao/processamento_de_imagens/TP/TP_PAI-Dayane-Paulo/image/9018291R_recorte.png"
-    caminho_da_imagem_b = "/home/mostarda/Documentos/Eng_computacao/proc_imagens/TP_PAI-Dayane-Paulo/image/9018291R_recorte.png"
-    mapa_b = mapa_dos_pixels(caminho_da_imagem_b)
-    altura_b, largura_b = obtendo_dimensoes(caminho_da_imagem_b)
+    caminho_img_b = "/mnt/da/eng_computacao/processamento_de_imagens/TP/TP_PAI-Dayane-Paulo/image/9018291R_recorte.png"
+    #caminho_img_b = "/home/mostarda/Documentos/Eng_computacao/proc_imagens/TP_PAI-Dayane-Paulo/image/9018291R_recorte.png"
+    mapa_b = mapa_dos_pixels(caminho_img_b)
+    altura_b, largura_b = obtendo_dimensoes(caminho_img_b)
     media_b = np.average(mapa_b)
     dp_b = np.std(mapa_b)
 
@@ -149,5 +151,5 @@ if __name__ == "__main__":
 
     print("\n")
 
-    posicao_detectada(y0_ccn_max, x0_ccn_max, altura_b, largura_b, caminho_da_imagem_a)
-    
+    posicao_detectada(y0_ccn_max, x0_ccn_max, altura_b, largura_b, caminho_img_a)
+'''  

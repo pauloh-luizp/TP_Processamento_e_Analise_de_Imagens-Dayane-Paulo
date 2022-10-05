@@ -2,9 +2,6 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
-import math
-import sys
-import cv2
 import os
 
 

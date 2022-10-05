@@ -1,3 +1,7 @@
+#Componentes do grupo:
+# Dayane Gabriela Santos Cordeiro - 673915 - Engenharia de computação - PUC Minas Coração Eucarístico
+# Paulo Henrique Luiz Pereira - 673667 - Engenharia de computação - PUC Minas Coração Eucarístico
+
 #Importando a parte Image da biblioteca Pillow
 from ast import main
 from PIL import Image
@@ -8,7 +12,6 @@ import numpy as np
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
-import argparse
 
 #Imports necessários do Pygame
 import pygame, sys
