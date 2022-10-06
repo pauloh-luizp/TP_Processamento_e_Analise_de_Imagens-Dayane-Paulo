@@ -3,9 +3,14 @@
 # Paulo Henrique Luiz Pereira - 673667 - Engenharia de computação - PUC Minas Coração Eucarístico
 
 import sys
+
+import matplotlib
 import numpy as np
-import selecionando_imagem
+
 import recorte_imagem
+import selecionando_imagem
+
+matplotlib.use('TkAgg')
 import correlacao_cruzada as cc
 
 if __name__ == '__main__':
