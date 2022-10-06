@@ -4,9 +4,7 @@
   <a href="#dart-sobre">Sobre</a> &#xa0; | &#xa0; 
   <a href="#warning-importante">Importante</a> &#xa0; | &#xa0; 
   <a href="#sparkles-funcionamento">Funcionamento</a> &#xa0; | &#xa0;
-  <a href="#rocket-tecnologias">Tecnologias</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-requisitos">Requisitos</a> &#xa0; | &#xa0;
-  <a href="#memo-autora">Autores</a> &#xa0; 
+  <a href="#memo-autores">Autores</a> &#xa0; 
 </p>
 
 <br>
