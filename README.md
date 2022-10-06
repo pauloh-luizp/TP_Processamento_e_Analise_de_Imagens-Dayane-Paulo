@@ -48,7 +48,7 @@ A região selecionada é salva em um novo arquivo com o nome semelhante ao anter
 </div>
 
 ## :memo: Autores ##
-<a href="https://github.com/DayaneCordeiro">
+<div>
     <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/54179987?v=4" width="150px;" alt=""/>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/50596100?v=4" width="150px;" alt=""/>
@@ -56,4 +56,4 @@ A região selecionada é salva em um novo arquivo com o nome semelhante ao anter
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sub><b>Paulo Henrique Luiz</b></sub>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <sub><b>Dayane Cordeiro</b></sub>
-</a>
+</div>
