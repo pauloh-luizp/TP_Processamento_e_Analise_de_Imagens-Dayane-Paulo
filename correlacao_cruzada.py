@@ -55,9 +55,10 @@ def corr_cruz(y0, x0, dp_a, dp_b, mapa_a, mapa_b,
 
   return(ccn)
 
-def posicao_detectada(y0_a, x0_a, altura_b, largura_b, caminho_img_a):
-  x = np.array(Image.open(caminho_img_a), dtype=np.uint8) 
-  plt.imshow(x)
+def posicao_detectada(y0_a, x0_a, altura_b, largura_b, caminho_img_a, caminho_img_b):
+  y = np.array(Image.open(caminho_img_b), dtype=np.uint8) 
+  plt.imshow(y)
+  x = np.array(Image.open(caminho_img_a), dtype=np.uint8)
   fig, ax = plt.subplots(1)
   ax.imshow(x)
   rect = patches.Rectangle((x0_a, y0_a), largura_b, altura_b,

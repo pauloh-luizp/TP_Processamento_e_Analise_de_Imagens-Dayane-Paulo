@@ -80,4 +80,4 @@ if __name__ == '__main__':
     print("x0_ccn_max: " + str(x0_ccn_max))
     print("y0_ccn_max: " + str(y0_ccn_max))
         
-    cc.posicao_detectada(y0_ccn_max, x0_ccn_max, altura_b, largura_b, caminho_img_a)
+    cc.posicao_detectada(y0_ccn_max, x0_ccn_max, altura_b, largura_b, caminho_img_a, caminho_img_b)
