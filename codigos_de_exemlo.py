@@ -111,10 +111,8 @@ def browseFiles():
                                                         "*.txt*"), 
                                                        ("all files", 
                                                         "*.*"))) 
-       
-    
-    label_file_explorer.configure(text="File Opened: "+filename) 
-       
+
+    label_file_explorer.configure(text="File Opened: "+filename)     
                                                                                                 
 window = Tk() 
    
@@ -150,5 +148,39 @@ window.mainloop()
 ### Abrindo o explorador de aquivos
 import easygui
 file = easygui.fileopenbox()
+
+
+### Criando uma imagem, convertendo-a para escala de cinza e imprimindo os seus valores
+
+from PIL import Image
+  
+# Create an image as input:
+input_image = Image.new(mode="RGB", size=(20, 20),
+                        color="blue")
+  
+# save the image as "input.png"
+#(not mandatory)
+input_image.save("input", format="png")
+  
+# Extracting pixel map:
+pixel_map = input_image.load()
+  
+# Extracting the width and height
+# of the image:
+width, height = input_image.size
+
+
+for i in range(width):
+  for j in range(height):
+    # getting the RGB pixel value.
+    r, g, b = input_image.getpixel((i, j))
+      
+    # Apply formula of grayscale:
+    grayscale = (0.299*r + 0.587*g + 0.114*b)
+
+    # setting the pixel value.
+    pixel_map[i, j] = (int(grayscale), int(grayscale), int(grayscale))
+    
+    print(pixel_map[i,j])
 
 '''
