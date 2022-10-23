@@ -4,22 +4,31 @@
 
 import sys
 import numpy as np
+from tkinter import *
 import selecionando_imagem
 import recorte_imagem
 import correlacao_cruzada as cc
 
-if __name__ == '__main__':
-    #Abrindo o explorador de arquivos, selecionando a imagem B que será recortada
-    #e definindo o nome do novo arquivo
-    caminho_completo_img_b = selecionando_imagem.selecionando_imagens()
+caminho_img_a = ""
+caminho_img_b = ""
+caminho_completo_img_b = ""
+
+def sel_img_a():
+    global caminho_img_a
+    #Abrindo o explorador de arquivos e selecionando a imagem A
+    caminho_img_a = selecionando_imagem.selecionando_imagens("A")
+
+def sel_img_b():
+    global caminho_completo_img_b
+    #Abrindo o explorador de arquivos e selecionando a imagem B
+    caminho_completo_img_b = selecionando_imagem.selecionando_imagens("B")
+
+def recorte():
+    global caminho_img_b
+    #Configurando o recorte da imagem e o novo nome do arquivo
     caminho_img_sel = caminho_completo_img_b[: len(caminho_completo_img_b) - 4]
     formato_img_sel = caminho_completo_img_b[len(caminho_completo_img_b) - 4 : ]
     caminho_img_b = caminho_img_sel + '_recorte' + formato_img_sel
-
-    caminho_img_a = selecionando_imagem.selecionando_imagens()
-    print(caminho_img_a)
-
-    #Configurando o recorte da imagem
     screen, px = recorte_imagem.setup(caminho_completo_img_b)
     left, upper, right, lower = recorte_imagem.mainLoop(screen, px)
 
@@ -37,6 +46,9 @@ if __name__ == '__main__':
     #Salvando a imagem recortada
     im.save(caminho_img_b)
 
+def corr_cruz_ab():
+    global caminho_img_a
+    global caminho_img_b
     #mapa, altura, largura, média e desvio padrão da imagem A
     mapa_a = cc.mapa_dos_pixels(caminho_img_a)
     altura_a, largura_a = cc.obtendo_dimensoes(caminho_img_a)
@@ -80,4 +92,40 @@ if __name__ == '__main__':
     print("x0_ccn_max: " + str(x0_ccn_max))
     print("y0_ccn_max: " + str(y0_ccn_max))
         
-    cc.posicao_detectada(y0_ccn_max, x0_ccn_max, altura_b, largura_b, caminho_img_a)
+    cc.posicao_detectada(y0_ccn_max, x0_ccn_max, altura_b, largura_b, caminho_img_a, caminho_img_b)
+
+def interface():                                                                                               
+  window = Tk() 
+    
+  window.title('Diagnóstico de Osteoartrite Femorotibial através de imagens de raio X') 
+    
+  window.geometry("200x300") 
+    
+  window.config(background = "white") 
+        
+  button_explore_img_a = Button(window,  
+                                text = "Selecionar a imagem A", 
+                                command = sel_img_a)
+
+  button_explore_img_b = Button(window,
+                                text = "Selecionar a imagem B", 
+                                command = sel_img_b)  
+    
+  button_recorte_img_b = Button(window,
+                                text = "Recortar a imagem B", 
+                                command = recorte)
+
+  button_corr_a_b = Button(window,
+                           text = "Corr_Cruz_AB",
+                           command = corr_cruz_ab) 
+    
+  button_explore_img_a.grid(column = 0, row = 1) 
+  button_explore_img_b.grid(column = 0, row = 2) 
+  button_recorte_img_b.grid(column = 0, row = 3)
+  button_corr_a_b.grid(column=0, row = 4)
+    
+  window.mainloop()
+
+
+if __name__ == '__main__':
+  interface()

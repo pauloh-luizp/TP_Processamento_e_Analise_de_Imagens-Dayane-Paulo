@@ -5,7 +5,9 @@
 #Imports necessários para a Interface Gráfica - Tkinter
 import easygui
 
-def selecionando_imagens():
-  caminho = easygui.fileopenbox(default="../")
+def selecionando_imagens(img):
+  caminho = easygui.fileopenbox(title="Selecione a imagem " + str(img),
+                                default="../TP_PAI-Dayane-Paulo/image/",
+                                filetypes=["*.jpg","*.png"])
   return caminho
   
