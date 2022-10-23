@@ -3,33 +3,25 @@ from tkinter import filedialog
 import selecionando_imagem
 import recorte_imagem
 
-class Caminho_img:
-    def __init__(self, img_a = "", img_b = ""):
-        self.img_a = img_a
-        self.img_b = img_b
-    
-    def set_caminho_img_a(self, img_a):
-        self.img_a = img_a
-
-    def set_caminho_img_b(self, img_b):
-        self.img_b = img_b
-
-    def get_caminho_img_a(self):
-        return self.img_a
-
-    def get_caminho_img_b(self):
-        return self.img_b
+caminho_completo_img_a = ""
+caminho_completo_img_b = ""
    
-def sel_img_a(): 
-  Caminho_img.set_caminho_img_b(selecionando_imagem.selecionando_imagens())
+def sel_img_a():
+    global caminho_completo_img_a
+    #Abrindo o explorador de arquivos e selecionando a imagem A
+    caminho_completo_img_a = selecionando_imagem.selecionando_imagens("A")
 
-def sel_img_b(): 
-  Caminho_img.set_caminho_img_b(selecionando_imagem.selecionando_imagens())
+def sel_img_b():
+    global caminho_completo_img_b
+    #Abrindo o explorador de arquivos e selecionando a imagem B
+    caminho_completo_img_b = selecionando_imagem.selecionando_imagens("B")
 
 def recorte():
-    #Configurando o recorte da imagem
-    caminho_img_b = Caminho_img.get_caminho_img_b
-    screen, px = recorte_imagem.setup(caminho_img_b)
+    #Configurando o recorte da imagem e o novo nome do arquivo
+    caminho_img_sel = caminho_completo_img_b[: len(caminho_completo_img_b) - 4]
+    formato_img_sel = caminho_completo_img_b[len(caminho_completo_img_b) - 4 : ]
+    caminho_img_b = caminho_img_sel + '_recorte' + formato_img_sel
+    screen, px = recorte_imagem.setup(caminho_completo_img_b)
     left, upper, right, lower = recorte_imagem.mainLoop(screen, px)
 
     #Garante que a imagem de saida tenha altura e largura positivas
@@ -39,7 +31,7 @@ def recorte():
         lower, upper = upper, lower
 
     #Recortando a imagem
-    im = recorte_imagem.Image.open(caminho_img_b)
+    im = recorte_imagem.Image.open(caminho_completo_img_b)
     im = im.crop(( left, upper, right, lower))
     recorte_imagem.pygame.display.quit()
 
@@ -55,20 +47,25 @@ def interface():
     
   window.config(background = "white") 
         
-  button_explore = Button(window,  
-                          text = "selecionar a imagem A", 
-                          command = sel_img_a)
+  button_explore_img_a = Button(window,  
+                            text = "Selecionar a imagem A", 
+                            command = sel_img_a)
 
-  button_explore = Button(window,
-                          text = "selecionar a imagem B", 
-                          command = sel_img_b)  
+  button_explore_img_b = Button(window,
+                            text = "Selecionar a imagem B", 
+                            command = sel_img_b)  
     
-  button_exit = Button(window,
-                      text = "Recortar a imagem B", 
-                      command = recorte)  
+  button_recorte_img_b = Button(window,
+                            text = "Recortar a imagem B", 
+                            command = recorte)  
     
-  button_explore.grid(column = 0, row = 2) 
+  button_explore_img_a.grid(column = 0, row = 1) 
+  
+  button_explore_img_b.grid(column = 0, row = 2) 
     
-  button_exit.grid(column = 0,row = 3) 
+  button_recorte_img_b.grid(column = 0,row = 3) 
     
-  window.mainloop() 
+  window.mainloop()
+
+
+interface()
