@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import filedialog 
 import selecionando_imagem
 import recorte_imagem
 
