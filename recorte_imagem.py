@@ -72,3 +72,33 @@ def mainLoop(screen, px):
         if topleft:
             prior = displayImage(screen, px, topleft, prior)
     return ( topleft + bottomright )
+
+
+def recortar_img(caminho_completo_img_b):
+    #Configurando o recorte da imagem e o novo nome do arquivo
+    if(caminho_completo_img_b[: len(caminho_completo_img_b) - 4] == 'peg'):
+      caminho_img_sel = caminho_completo_img_b[: len(caminho_completo_img_b) - 5]
+      formato_img_sel = caminho_completo_img_b[len(caminho_completo_img_b) - 5 : ]
+    else:
+      caminho_img_sel = caminho_completo_img_b[: len(caminho_completo_img_b) - 4]
+      formato_img_sel = caminho_completo_img_b[len(caminho_completo_img_b) - 4 : ]
+    
+    caminho_img_b = caminho_img_sel + '_recorte' + formato_img_sel
+    screen, px = setup(caminho_completo_img_b)
+    left, upper, right, lower = mainLoop(screen, px)
+
+    #Garante que a imagem de saida tenha altura e largura positivas
+    if right < left:
+      left, right = right, left
+    if lower < upper:
+      lower, upper = upper, lower
+
+    #Recortando a imagem
+    img = Image.open(caminho_completo_img_b)
+    img = img.crop(( left, upper, right, lower))
+    pygame.display.quit()
+
+    #Salvando a imagem recortada
+    img.save(caminho_img_b)
+
+    return caminho_img_b
