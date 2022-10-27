@@ -48,7 +48,7 @@ def valor_ccn(y0, x0, dp_a, dp_b, mapa_a, mapa_b,
 
   for y in range(altura_b):
     for x in range(largura_b):
-      somatorio = somatorio + ((mapa_a[y0 + y,x0 + x] - media_a)*(mapa_b[y,x] - media_b))
+      somatorio += ((mapa_a[y0 + y,x0 + x] - media_a)*(mapa_b[y,x] - media_b))
 
   ccn = somatorio / (dp_a * dp_b)
 
@@ -61,7 +61,7 @@ def posicao_detectada(y0_a, x0_a, altura_b, largura_b, caminho_img_a, caminho_im
   fig, ax = plt.subplots(1)
   ax.imshow(x)
   rect = patches.Rectangle((x0_a, y0_a), largura_b, altura_b,
-                            linewidth=1, edgecolor='r', facecolor="none")
+                          linewidth=1, edgecolor='r', facecolor="none")
   ax.add_patch(rect)
   plt.show()
 

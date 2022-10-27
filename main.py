@@ -42,6 +42,11 @@ def espelhamento():
   cv2.imshow('Img A espelhada H', img_a)
   cv2.imshow('Img b espelhada H', img_b)
 
+def histograma():
+  histo = []
+  histo = aumento_de_dados.histograma_prob(caminho_img_a)
+  print(histo)
+
 def interface():                                                                                               
   window = Tk()
     
@@ -69,7 +74,7 @@ def interface():
 
   button_esp_horz = Button(window, 
                            text = "Espelhamento A e B",
-                           command = espelhamento)
+                           command = histograma)
     
   button_explore_img_a.grid(column = 0, row = 1) 
   button_explore_img_b.grid(column = 0, row = 2) 
