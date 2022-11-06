@@ -76,14 +76,9 @@ def mainLoop(screen, px):
 
 def recortar_img(caminho_completo_img_b):
   #Configurando o recorte da imagem e o novo nome do arquivo
-  if(caminho_completo_img_b[: len(caminho_completo_img_b) - 4] == 'peg'):
-    caminho_img_sel = caminho_completo_img_b[: len(caminho_completo_img_b) - 5]
-    formato_img_sel = caminho_completo_img_b[len(caminho_completo_img_b) - 5 : ]
-  else:
-    caminho_img_sel = caminho_completo_img_b[: len(caminho_completo_img_b) - 4]
-    formato_img_sel = caminho_completo_img_b[len(caminho_completo_img_b) - 4 : ]
-  
-  caminho_img_b = caminho_img_sel + '_recorte' + formato_img_sel
+  nome_img_b = caminho_completo_img_b[caminho_completo_img_b.rfind('/') + 1 : caminho_completo_img_b.rfind('.')]
+  formato_img_b = caminho_completo_img_b[caminho_completo_img_b.rfind('.') : len(caminho_completo_img_b)]
+  caminho_img_b = nome_img_b + '_recorte' + formato_img_b
   screen, px = setup(caminho_completo_img_b)
   left, upper, right, lower = mainLoop(screen, px)
 

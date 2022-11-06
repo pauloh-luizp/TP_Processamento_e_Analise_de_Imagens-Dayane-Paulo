@@ -20,7 +20,7 @@ def espelhamento_horz(caminho_img, novo_caminho):
 
 
 def histograma_equal(caminho_img, novo_caminho):
-  
+  #lendo a imagem e realizando a equalização do histograma 
   img = cv2.imread(caminho_img,0)
   img_h_equ = cv2.equalizeHist(img)
 
@@ -35,12 +35,22 @@ def histograma_equal(caminho_img, novo_caminho):
 
 def aumentoDados():
   for i in range(0, 5):
+    #configuramos o diretório base onde está as imagens das 5 classes
     diretorio_base = "../testes"
+    #a cada iteração do for muda-se a classe das imagens para serem feitas o aumento de dados
     diretorio_atual = diretorio_base + '/' + str(i) + '/'
+    #obtem o caminho completo do diretório atual
     diretorio = os.path.abspath(diretorio_atual)
-    print(diretorio)
-    
 
+    #para cada imagem na pasta será feito a equalizacao do histograma e o espelhamento horizontal
+    for img in Path(diretorio).iterdir():
+      if img.is_file():
+        caminho_completo = diretorio + '/' + img.name
+        espelhamento_horz(caminho_completo,diretorio_atual)
+        histograma_equal(caminho_completo,diretorio_atual)
+    
+    #usado caso queiramos criar novos diretorios para cada tipo de aumento de dados
+    '''
     novo_diretorio = os.path.join(diretorio_base, str(i) + '_esp_horz/')
     if not os.path.exists(novo_diretorio):
       os.makedirs(novo_diretorio)
@@ -56,6 +66,7 @@ def aumentoDados():
       if img.is_file():
         caminho_completo = diretorio + '/' + img.name
         histograma_equal(caminho_completo,novo_diretorio)
+    '''
 
 
 aumentoDados()
