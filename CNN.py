@@ -7,7 +7,7 @@ import numpy as np
 import scipy.integrate as integrate
 
 # Get a ResNet50 model
-def resnet50_model(classes=1000, *args, **kwargs):
+def resnet50_model(classes=5, *args, **kwargs):
     # Load a model if we have saved one
     if(os.path.isfile('../model/resnet_50.h5') == True):
       return keras.models.load_model('../model/resnet_50.h5')
@@ -32,9 +32,9 @@ def resnet50_model(classes=1000, *args, **kwargs):
     output = identity_block(output, 3, [256, 256, 1024], stage=4, block='d')
     output = identity_block(output, 3, [256, 256, 1024], stage=4, block='e')
     output = identity_block(output, 3, [256, 256, 1024], stage=4, block='f')
-    output = conv_block(output, 3, [512, 512, 2048], stage=5, block='a')
-    output = identity_block(output, 3, [512, 512, 2048], stage=5, block='b')
-    output = identity_block(output, 3, [512, 512, 2048], stage=5, block='c')
+    output = conv_block(output, 5, [512, 512, 2048], stage=5, block='a')
+    output = identity_block(output, 5, [512, 512, 2048], stage=5, block='b')
+    output = identity_block(output, 5, [512, 512, 2048], stage=5, block='c')
     output = keras.layers.GlobalAveragePooling2D(name='pool5')(output)
     output = keras.layers.Dense(classes, activation='softmax', name='fc1000')(output)
     # Create a model from input layer and output layers
@@ -98,8 +98,8 @@ def train():
     train_samples = 10 * 5000 # 10 categories with 5000 images in each category
     validation_samples = 10 * 1000 # 10 categories with 1000 images in each category
     img_width, img_height = 224, 224
-    # Get the model (10 categories)
-    model = resnet50_model(10)
+    # Get the model (5 categories)
+    model = resnet50_model(5)
     # Create a data generator for training
     train_data_generator = keras.preprocessing.image.ImageDataGenerator(
         rescale=1./255, 
