@@ -9,6 +9,8 @@ python -m pip install matplotlib
 pip install matplotlib
 pip install tensorflow
 pip install scipy
+pip install -U scikit-image
+
 
 sudo apt-get install python-matplotlib
 sudo apt-get install python3-tk
