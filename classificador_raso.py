@@ -1,4 +1,7 @@
 from skimage.feature import graycomatrix, graycoprops
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import classification_report
 from pathlib import Path
 import aumento_de_dados as ad
 import pandas as pd 
@@ -64,7 +67,7 @@ def gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades):
         for item in glcm_props:
           #coloca todos os valores das propriedades em uma lista
           prop_img.append(item)
-        prop_img.append(img.name)
+        #prop_img.append(img.name)
         prop_img.append(i)
         #coloca todos os valores das propriedades das imagens 
         #em uma lista que conterá a propriedade de todas as imagens do dataset
@@ -72,17 +75,15 @@ def gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades):
 
   return prop_imgs
 
-def classf_raso(tipo_dataset, tipo_classf, propriedades):
-  pre_processamento(tipo_classf, tipo_dataset)
-  glcm = gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades)
-  
+
+def exibir_propriedades(glcm, propriedades):
   colunas = []
   anglulos = ['0', '45', '90','135']
   for name in propriedades :
       for ang in anglulos:
           colunas.append(name + "_" + ang)
           
-  colunas.append("Nome_img")
+  #colunas.append("Nome_img")
   colunas.append("Classe")
 
   glcm_df = pd.DataFrame(glcm, columns = colunas)
@@ -91,8 +92,78 @@ def classf_raso(tipo_dataset, tipo_classf, propriedades):
 
   print(glcm_df)
 
-if __name__=='__main__':
-  tipo_dataset = 'train'
+
+#temos que remodelar os dados para se adequar ao classificador
+def remodelando_dados(glcm):
+  dados = []
+  classes_dados = []
+
+  dados = [item[:24] for item in glcm]
+
+  for i in range (0, len(glcm)):
+    classes_dados.append(glcm[i][24])
+
+  dados = np.array(dados)
+  classes_dados = np.array(classes_dados)
+  dados_qtd = dados.shape[0]
+  dados = dados.reshape(dados_qtd, -1)
+
+  return (dados, classes_dados)
+
+def classf_raso():
+  
+  f = open('saidas.txt','w')
+  
+  train = []
+  test = []
+  val =[]
+  classes_train = []
+  classes_test = []
+  classes_val = []
+  
   tipo_classf = 5
   propriedades = ['contrast', 'dissimilarity', 'homogeneity', 'energy', 'correlation', 'ASM']
-  classf_raso(tipo_dataset, tipo_classf, propriedades)
+  
+  tipo_dataset = 'train'
+  #pre_processamento(tipo_classf, tipo_dataset)
+  glcm_train = gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades)
+  train, classes_train = remodelando_dados(glcm_train)
+
+  tipo_dataset = 'test'
+  #pre_processamento(tipo_classf, tipo_dataset)
+  glcm_test = gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades)
+  test, classes_test = remodelando_dados(glcm_test)
+
+  tipo_dataset = 'val'
+  #pre_processamento(tipo_classf, tipo_dataset)
+  glcm_val = gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades)
+  val, classes_val = remodelando_dados(glcm_val)
+
+  le = LabelEncoder()
+  classes = le.fit_transform(classes_test)
+
+  print(classes_train, file=f)
+  print(train, file=f)
+
+  knn_model = KNeighborsClassifier(n_neighbors=3, n_jobs=-1)
+  knn_model.fit(train, classes_train)
+  
+  print('\n')
+  print(classification_report(classes_test, knn_model.predict(test), zero_division=0))
+
+
+if __name__=='__main__':
+
+  classf_raso()
+  
+  '''
+  f = open('saidas.txt','w')
+  
+  #print(glcm_train[0:6][0:2], file=f)
+  
+  for i in range(0, len(glcm_train)):
+    print(glcm_train[i][:24], file=f)
+    #print('\n', file=f)
+  #for i in range (0, len(glcm_train)):
+    #print(glcm_train[i][24])
+  '''
