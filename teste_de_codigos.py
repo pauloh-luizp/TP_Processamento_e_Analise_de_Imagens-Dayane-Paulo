@@ -9,7 +9,13 @@ import re
 from skimage.feature import graycomatrix, graycoprops
 import pandas as pd 
 
+d = 'teste'
+diretorio_base = "../test"+ d
 
+print(diretorio_base)
+
+
+'''
 # import necessary packages
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -85,6 +91,7 @@ model = KNeighborsClassifier(n_neighbors=3, n_jobs=-1)
 model.fit(trainX, trainY)
 
 print(classification_report(testY, model.predict(testX), target_names=le.classes_))
+'''
 
 '''
 from pathlib import Path

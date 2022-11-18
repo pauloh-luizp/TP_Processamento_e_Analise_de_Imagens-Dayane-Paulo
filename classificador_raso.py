@@ -7,11 +7,17 @@ import cv2
 import os
 
 
-def pre_processamento():
-  for i in range(0, 5):
+def pre_processamento(tipo_classf, tipo_dataset):
+  
+  if(tipo_classf == 2):
+    classf = '_binaria'
+  elif(tipo_classf == 5):
+    classf = '_5_classes_KL'
+  
+  for i in range(0, tipo_classf):
     #configuramos o diretório base onde está as imagens das 5 classes
-    diretorio_base = "../test"
-    diretorio_class_raso = "../img_classf_raso"
+    diretorio_base = "../test" + classf + '/' + tipo_dataset
+    diretorio_class_raso = "../img_classf_raso" + classf + '/' + tipo_dataset
     #a cada iteração do for muda-se a classe das imagens para serem feitas o aumento de dados
     diretorio_atual = diretorio_base + '/' + str(i) + '/'
     #obtem o caminho completo do diretório atual
@@ -26,14 +32,19 @@ def pre_processamento():
         ad.histograma_equal(caminho_completo,novo_diretorio)
 
 
-def gray_l_co_o_matix():
-  #propriedades que serão calculadas usando a matriz de co-ocorrencia de níveis de cinza
-  propriedades = ['contrast', 'dissimilarity', 'homogeneity', 'energy', 'correlation', 'ASM']
+def gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades):
+  #lista contendo os valores das propriedades que serão 
+  #calculadas usando a matriz de co-ocorrencia de níveis de cinza
   prop_imgs = []
 
-  for i in range(0, 5):
+  if(tipo_classf == 2):
+    classf = '_binaria'
+  elif(tipo_classf == 5):
+    classf = '_5_classes_KL'
+
+  for i in range(0, tipo_classf):
     #configuramos o diretório base onde está as imagens das 5 classes
-    diretorio_class_raso = "../img_classf_raso"
+    diretorio_class_raso = "../img_classf_raso" + classf + '/' + tipo_dataset
     #a cada iteração do for muda-se a classe das imagens para o calculo da matriz de co-ocorrencia de níveis de cinza
     diretorio_atual = diretorio_class_raso + '/' + str(i) + '/'
     #obtem o caminho completo do diretório atual
@@ -61,16 +72,9 @@ def gray_l_co_o_matix():
 
   return prop_imgs
 
-
-if __name__=='__main__':
-  #pre_processamento()
-  carat = gray_l_co_o_matix()
-  #print(carat)
-  #print("espaco")
-  #for i in range (0,4):
-    #print(carat[i])
-  
-  propriedades = ['contrast', 'dissimilarity', 'homogeneity', 'energy', 'correlation', 'ASM']
+def classf_raso(tipo_dataset, tipo_classf, propriedades):
+  pre_processamento(tipo_classf, tipo_dataset)
+  glcm = gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades)
   
   colunas = []
   anglulos = ['0', '45', '90','135']
@@ -81,9 +85,14 @@ if __name__=='__main__':
   colunas.append("Nome_img")
   colunas.append("Classe")
 
-  glcm_df = pd.DataFrame(carat, 
-                        columns = colunas)
+  glcm_df = pd.DataFrame(glcm, columns = colunas)
 
   glcm_df.head(15)
 
   print(glcm_df)
+
+if __name__=='__main__':
+  tipo_dataset = 'train'
+  tipo_classf = 5
+  propriedades = ['contrast', 'dissimilarity', 'homogeneity', 'energy', 'correlation', 'ASM']
+  classf_raso(tipo_dataset, tipo_classf, propriedades)
