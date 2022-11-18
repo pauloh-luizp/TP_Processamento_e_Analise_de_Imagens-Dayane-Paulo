@@ -22,3 +22,6 @@ https://python.hotexamples.com/examples/easygui/-/fileopenbox/python-fileopenbox
 get color of pixel on screen python Code Example
 https://www.codegrepper.com/code-examples/python/get+color+of+pixel+on+screen+python
 
+ResNet50 Image Classification in Python | A Name Not Yet Taken AB
+https://www.annytab.com/resnet50-image-classification-in-python/
+

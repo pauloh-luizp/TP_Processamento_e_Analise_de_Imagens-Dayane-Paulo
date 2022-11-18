@@ -4,9 +4,16 @@ pip install opencv-contrib-python
 pip install pygame
 pip install easygui
 pip install numpy
+pip install panda
+pip install sklearn
 python -m pip install -U pip setuptools
 python -m pip install matplotlib
 pip install matplotlib
+pip install tensorflow
+pip install scipy
+pip install -U scikit-image
+pip install -U scikit-learn
+
 
 sudo apt-get install python-matplotlib
 sudo apt-get install python3-tk
