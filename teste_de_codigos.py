@@ -9,6 +9,83 @@ import re
 from skimage.feature import graycomatrix, graycoprops
 import pandas as pd 
 
+
+# import necessary packages
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import  train_test_split
+from sklearn.metrics import classification_report
+import os
+import glob
+import cv2
+import numpy as np
+
+def getListOfFiles(dirName):
+    # create a list of file and sub directories
+    # names in the given directory
+    listOfFile = os.listdir(dirName)
+    allFiles = list()
+    # Iterate over all the entries
+    for entry in listOfFile:
+        # Create full path
+        fullPath = os.path.join(dirName, entry)
+        # If entry is a directory then get the list of files in this directory
+        if os.path.isdir(fullPath):
+            allFiles = allFiles + getListOfFiles(fullPath)
+        else:
+            allFiles.append(fullPath)
+
+    return allFiles
+
+imagePaths = getListOfFiles("../img_classf_raso") ## Folder structure: datasets --> sub-folders with labels name
+#print(imagePaths)
+
+data = []
+lables = []
+c = 0 ## to see the progress
+for image in imagePaths:
+
+    lable = os.path.split(os.path.split(image)[0])[1]
+    lables.append(lable)
+
+    img = cv2.imread(image)
+    img = cv2.resize(img, (32, 32), interpolation = cv2.INTER_AREA)
+    data.append(img)
+    #c=c+1
+    #print(c)
+
+#print(lables)
+
+# encode the labels as integer
+data = np.array(data)
+lables = np.array(lables)
+
+le = LabelEncoder()
+lables = le.fit_transform(lables)
+
+myset = set(lables)
+print(myset)
+
+dataset_size = data.shape[0]
+data = data.reshape(dataset_size,-1)
+
+f = open('saidas.txt','w')
+
+print(data[0], file=f)
+print(lables, file=f)
+
+print(data.shape)
+print(lables.shape)
+print(dataset_size)
+
+(trainX, testX, trainY, testY ) = train_test_split(data, lables, test_size= 0.25, random_state=42)
+
+model = KNeighborsClassifier(n_neighbors=3, n_jobs=-1)
+model.fit(trainX, trainY)
+
+print(classification_report(testY, model.predict(testX), target_names=le.classes_))
+
 '''
 from pathlib import Path
 diretorio = "../KneeXrayData/ClsKLData/kneeKL224/auto_test/0/"
@@ -27,7 +104,7 @@ img = nome_img + '_esp_horz' + formato_img
 print(caminho_img)
 '''
 
-
+'''
 #https://github.com/alfianhid/Feature-Extraction-Gray-Level-Co-occurrence-Matrix-GLCM-with-Python/blob/master/Feature_Extraction_Gray_Level_Co_occurrence_Matrix_(GLCM)_with_Python.ipynb
 def normalize_label(str_):
     str_ = str_.replace(" ", "")
@@ -135,7 +212,7 @@ def panda(glcm_all_agls, columns):
 if __name__=='__main__':
   glcm_all_agls, columns = carrega_diretorios()
   panda(glcm_all_agls, columns)
-
+'''
 
 '''
 https://sourceexample.com/article/en/cad76b26f0627fb94e787be4439f1e05/
