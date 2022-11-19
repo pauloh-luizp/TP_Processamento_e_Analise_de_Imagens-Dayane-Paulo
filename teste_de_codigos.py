@@ -9,8 +9,6 @@ import re
 from skimage.feature import graycomatrix, graycoprops
 import pandas as pd 
 
-
-
 # import necessary packages
 
 from sklearn.neighbors import KNeighborsClassifier

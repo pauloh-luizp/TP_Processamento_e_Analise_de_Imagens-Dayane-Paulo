@@ -27,7 +27,6 @@ def histograma_equal(caminho_img, novo_caminho):
   nome_img = caminho_img[caminho_img.rfind('/') + 1 : caminho_img.rfind('.')]
   formato_img = caminho_img[caminho_img.rfind('.') : len(caminho_img)]
   caminho_h_equ = novo_caminho + nome_img + '_h_equ' + formato_img
-  print(caminho_h_equ)
 
   #Salvando a imagem com o histograma equalizado
   cv2.imwrite(caminho_h_equ , img_h_equ)

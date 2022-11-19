@@ -19,7 +19,7 @@ def pre_processamento(tipo_classf, tipo_dataset):
   
   for i in range(0, tipo_classf):
     #configuramos o diretório base onde está as imagens das 5 classes
-    diretorio_base = "../test" + classf + '/' + tipo_dataset
+    diretorio_base = "../classf" + classf + '/' + tipo_dataset
     diretorio_class_raso = "../img_classf_raso" + classf + '/' + tipo_dataset
     #a cada iteração do for muda-se a classe das imagens para serem feitas o aumento de dados
     diretorio_atual = diretorio_base + '/' + str(i) + '/'
@@ -110,7 +110,7 @@ def remodelando_dados(glcm):
 
   return (dados, classes_dados)
 
-def classf_raso():
+def classf_raso(tipo_classf):
   
   f = open('saidas.txt','w')
   
@@ -121,7 +121,6 @@ def classf_raso():
   classes_test = []
   classes_val = []
   
-  tipo_classf = 5
   propriedades = ['contrast', 'dissimilarity', 'homogeneity', 'energy', 'correlation', 'ASM']
   
   tipo_dataset = 'train'
@@ -142,8 +141,8 @@ def classf_raso():
   le = LabelEncoder()
   classes = le.fit_transform(classes_test)
 
-  print(classes_train, file=f)
-  print(train, file=f)
+  #print(classes_train, file=f)
+  #print(train, file=f)
 
   knn_model = KNeighborsClassifier(n_neighbors=3, n_jobs=-1)
   knn_model.fit(train, classes_train)
@@ -153,17 +152,6 @@ def classf_raso():
 
 
 if __name__=='__main__':
-
-  classf_raso()
+  tipo_classf = 5
+  classf_raso(tipo_classf)
   
-  '''
-  f = open('saidas.txt','w')
-  
-  #print(glcm_train[0:6][0:2], file=f)
-  
-  for i in range(0, len(glcm_train)):
-    print(glcm_train[i][:24], file=f)
-    #print('\n', file=f)
-  #for i in range (0, len(glcm_train)):
-    #print(glcm_train[i][24])
-  '''
