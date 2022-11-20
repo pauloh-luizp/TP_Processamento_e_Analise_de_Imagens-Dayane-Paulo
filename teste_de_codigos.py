@@ -1,3 +1,26 @@
+from tkinter import *
+
+class Testi():
+    def __init__(self):
+        self.canvas = Canvas(root, width = 800, height = 480)
+        self.img = PhotoImage(file="../TP_PAI-Dayane-Paulo/image/escolha_img_a.png")
+        self.imgArea = self.canvas.create_image(0, 0, anchor = NW, image = self.img)
+        self.canvas.pack()
+        self.but1 = Button(root, text="press me", command=lambda: self.changeImg())
+        self.but1.place(x=10, y=500)
+
+    def changeImg(self):
+
+      self.img = PhotoImage(file="../TP_PAI-Dayane-Paulo/image/escolha_img_b.png")
+
+      self.canvas.itemconfig(self.imgArea, image = self.img)
+
+root = Tk()
+root.geometry("800x600")
+app = Testi()
+root.mainloop() 
+
+'''
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -79,7 +102,7 @@ data = data.reshape(dataset_size,-1)
 #print(dataset_size)
 
 (trainX, testX, trainY, testY ) = train_test_split(data, lables, test_size= 0.25, random_state=42)
-'''
+
 print("TrainX", file=f)
 print(len(trainX), file=f)
 print("TrainY", file=f)
@@ -89,14 +112,14 @@ print("TestX", file=f)
 print(len(testX), file=f)
 print("TestY", file=f)
 print(testY, file=f)
-'''
+
 model = KNeighborsClassifier(n_neighbors=3, n_jobs=-1)
 model.fit(trainX, trainY)
 
 print(classification_report(testY, model.predict(testX), target_names=le.classes_))
 
 
-'''
+
 from pathlib import Path
 diretorio = "../KneeXrayData/ClsKLData/kneeKL224/auto_test/0/"
 #diretorio = "/image"

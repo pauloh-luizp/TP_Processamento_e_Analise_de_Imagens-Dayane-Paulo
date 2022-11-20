@@ -1,16 +1,16 @@
 from PIL import ImageTk, Image
 import tkinter as tk
-import cv2
+import random
 from tkinter import messagebox
 import selecionando_imagem
 import recorte_imagem
 import correlacao_cruzada as cc
 import classificador_raso
 import CNN_Resnet50_custon
-
-caminho_img_a = ""
-caminho_img_b = ""
-caminho_completo_img_b = ""
+#/mnt/da/eng_computacao/processamento_de_imagens/TP/TP_PAI-Dayane-Paulo/image/escolha_img_a.png
+caminho_img_a = "../TP_PAI-Dayane-Paulo/image/escolha_img_a.png"
+caminho_img_b = "../TP_PAI-Dayane-Paulo/image/escolha_img_b.png"
+caminho_completo_img_b = "../TP_PAI-Dayane-Paulo//image/recorte_img_b.png"
 
 
 class Interface:
@@ -19,15 +19,33 @@ class Interface:
     
     #Config da janela
     self.interTela1.title("Diagnóstico de Osteoartrite Femorotibial através de imagens de raio X")
-    self.interTela1.geometry('620x380')
+    self.interTela1.geometry('940x560')
 
     #Widgets da janela
+
+    #Widget da exibicao dos resultados
+    self.img_a = ImageTk.PhotoImage(Image.open(caminho_img_a))
+    self.exibe_img_a = tk.Label(self.interTela1, image=self.img_a)
+    self.exibe_img_a.grid(row=0, column=0, columnspan=5)
     self.lbl_img_a = tk.Label(self.interTela1, text="Imagem A")
-    self.lbl_img_a.pack(padx=50, side=tk.LEFT, fill="both")
+    self.lbl_img_a.grid(row=1, column=0, columnspan=5)
+
+    self.resultado = tk.Text(self.interTela1, width=60, height=20)
+    self.resultado.grid(row=0, column=6, columnspan=5)
+    self.lbl_img_b = tk.Label(self.interTela1, text="Resultado")
+    self.lbl_img_b.grid(row=1, column=6, columnspan=5)
+    
+    self.img_b = ImageTk.PhotoImage(Image.open(caminho_img_b))
+    self.exibe_img_b = tk.Label(self.interTela1, image=self.img_b)
+    self.exibe_img_b.grid(row=0, column=13, columnspan=5)
     self.lbl_img_b = tk.Label(self.interTela1, text="Imagem B")
-    self.lbl_img_b.pack(padx=50, side=tk.RIGHT, fill="both")
+    self.lbl_img_b.grid(row=1, column=13, columnspan=5)
+    
+    self.r_img_b = ImageTk.PhotoImage(Image.open(caminho_completo_img_b))
+    self.exibe_r_img_b = tk.Label(self.interTela1, image=self.r_img_b)
+    self.exibe_r_img_b.grid(row=2, column=6, columnspan=5)
     self.lbl_recorte_img_b = tk.Label(self.interTela1, text="Imagem B recortada")
-    self.lbl_recorte_img_b.pack(pady=20, side=tk.BOTTOM, fill="both")
+    self.lbl_recorte_img_b.grid(row=3, column=6, columnspan=5)
 
     #Config da barra de menu
     self.barra_menu = tk.Menu(self.interTela1)
@@ -57,38 +75,59 @@ class Interface:
     self.barra_menu.add_command(label="Corr cruz A&B", command=self.corr_cruz_ab)
     self.barra_menu.add_cascade(label="Classf raso", menu=self.classf_raso)
     self.barra_menu.add_cascade(label="CNN", menu=self.cnn)
+    self.barra_menu.add_command(label="Exibir último resultado", command=self.exibir_resultados)
+    self.barra_menu.add_command(label="Sobre")
 
   def sel_img_a(self):
     global caminho_img_a
     #Abrindo o explorador de arquivos e selecionando a imagem A
     caminho_img_a = selecionando_imagem.selecionando_imagens("A")
+    self.img_a = ImageTk.PhotoImage(Image.open(caminho_img_a))
+    self.exibe_img_a.configure(image=self.img_a)
 
   def sel_img_b(self):
     global caminho_completo_img_b
     #Abrindo o explorador de arquivos e selecionando a imagem B
     caminho_completo_img_b = selecionando_imagem.selecionando_imagens("B")
+    self.img_b = ImageTk.PhotoImage(Image.open(caminho_completo_img_b))
+    self.exibe_img_b.configure(image=self.img_b)
 
   def recorte(self):
     global caminho_img_b
     #chama a função de recortar a imagem
     caminho_img_b = recorte_imagem.recortar_img(caminho_completo_img_b)
+    self.r_img_b = ImageTk.PhotoImage(Image.open(caminho_img_b))
+    self.exibe_r_img_b.configure(image=self.r_img_b)
 
   def corr_cruz_ab(self):
     cc.calc_corr_cruz_ab(caminho_img_a, caminho_img_b)
+    self.exibir_resultados()
 
   def classf_raso_bin(self):
     tipo_classf=2
     classificador_raso.classf_raso(tipo_classf)
-  
+    self.exibir_resultados()
+
   def classf_raso_5classesKL(self):
     tipo_classf=5
     classificador_raso.classf_raso(tipo_classf)
+    self.exibir_resultados()
   
   def cnn_bin(self):
     CNN_Resnet50_custon.resnet50_Binaria()
+    self.exibir_resultados()
 
   def cnn_5classesKL(self):
     CNN_Resnet50_custon.resnet50_5classesKL()
+    self.exibir_resultados()
+  
+  def exibir_resultados(self):
+    tf = open('saidas.txt', 'r')
+    saida = tf.read()
+    self.resultado.insert(tk.END, saida)
+    tf.close()
+
+  
 
 def interface():
   #Gera a interface
@@ -163,8 +202,5 @@ def interface():
   button_recorte_img_b.grid(column = 0,row = 3) 
     
   window.mainloop()
-
-
-interface()
 '''
 

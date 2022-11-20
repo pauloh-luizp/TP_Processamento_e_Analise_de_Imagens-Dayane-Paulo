@@ -25,6 +25,8 @@ def resnet50_Binaria():
   classes_name = ('0','1')
   batch_size = 34
 
+  f = open("saidas.txt", 'w')
+
   imgdatagen = ImageDataGenerator(rescale=1 / 255.0,
           rotation_range=20,
           zoom_range=0.05,
@@ -88,11 +90,13 @@ def resnet50_Binaria():
   y_test = test_pre_dataset.labels
   cm = confusion_matrix(y_test,y_pred)
 
-  print(cm)
+  print(cm, file=f)
 
-  print(classification_report(test_pre_dataset.classes, y_pred,zero_division=0))
+  print(classification_report(test_pre_dataset.classes, y_pred,zero_division=0), file=f)
 
-  print(f'Result ResNet50_custon\n: {predictions}')
+  print(f'Result ResNet50_custon\n: {predictions}', file=f)
+
+  f.close()
 
 def resnet50_5classesKL():
   train_dataset = "../classf_5_classes_KL/train"
@@ -103,6 +107,8 @@ def resnet50_5classesKL():
   epochs_no = 30
   classes_name = ('0','1','2','3','4')
   batch_size = 34
+
+  f = open("saidas.txt", 'w')
 
   imgdatagen = ImageDataGenerator(rescale=1 / 255.0,
           rotation_range=20,
@@ -175,12 +181,16 @@ def resnet50_5classesKL():
   y_test = test_pre_dataset.labels
   cm = confusion_matrix(y_test,y_pred)
 
-  print(cm)
+  print(cm, file=f)
 
-  print(classification_report(test_pre_dataset.classes, y_pred))
+  print(classification_report(test_pre_dataset.classes, y_pred), file=f)
 
-  print(f'Result ResNet50_custon:\n {predictions}')
+  print(f'Result ResNet50_custon:\n {predictions}', file=f)
 
+  f.close()
+
+'''
 if __name__=='__main__':
-  #resnet50_Binaria()
+  resnet50_Binaria()
   resnet50_5classesKL()
+'''
