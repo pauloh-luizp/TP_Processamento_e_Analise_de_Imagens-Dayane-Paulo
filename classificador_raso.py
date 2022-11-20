@@ -147,8 +147,8 @@ def classf_raso(tipo_classf):
   print('\n')
   print(classification_report(classes_test, predict, zero_division=0))
 
-
+'''
 if __name__=='__main__':
   tipo_classf = 2
   classf_raso(tipo_classf)
-  
+'''

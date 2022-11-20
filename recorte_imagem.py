@@ -76,9 +76,11 @@ def mainLoop(screen, px):
 
 def recortar_img(caminho_completo_img_b):
   #Configurando o recorte da imagem e o novo nome do arquivo
+  caminho_orig = caminho_completo_img_b[ 0: caminho_completo_img_b.rfind('/') + 1]
   nome_img_b = caminho_completo_img_b[caminho_completo_img_b.rfind('/') + 1 : caminho_completo_img_b.rfind('.')]
   formato_img_b = caminho_completo_img_b[caminho_completo_img_b.rfind('.') : len(caminho_completo_img_b)]
-  caminho_img_b = nome_img_b + '_recorte' + formato_img_b
+  caminho_img_b = caminho_orig + nome_img_b + '_recorte' + formato_img_b
+  print(caminho_img_b)
   screen, px = setup(caminho_completo_img_b)
   left, upper, right, lower = mainLoop(screen, px)
 
