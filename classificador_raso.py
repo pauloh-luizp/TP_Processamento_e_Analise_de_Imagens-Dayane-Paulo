@@ -111,15 +111,18 @@ def remodelando_dados(glcm):
   return (dados, classes_dados)
 
 def classf_raso(tipo_classf):
-  
-  f = open('saidas.txt','w')
-  
+
   train = []
   test = []
   val =[]
   classes_train = []
   classes_test = []
   classes_val = []
+
+  if(tipo_classf == 2):
+    k = 18
+  elif(tipo_classf == 5):
+    k = 28
   
   propriedades = ['contrast', 'dissimilarity', 'homogeneity', 'energy', 'correlation', 'ASM']
   
@@ -138,20 +141,14 @@ def classf_raso(tipo_classf):
   glcm_val = gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades)
   val, classes_val = remodelando_dados(glcm_val)
 
-  le = LabelEncoder()
-  classes = le.fit_transform(classes_test)
-
-  #print(classes_train, file=f)
-  #print(train, file=f)
-
-  knn_model = KNeighborsClassifier(n_neighbors=3, n_jobs=-1)
+  knn_model = KNeighborsClassifier(n_neighbors= k, n_jobs=-1)
   knn_model.fit(train, classes_train)
-  
+  predict = knn_model.predict(test)
   print('\n')
-  print(classification_report(classes_test, knn_model.predict(test), zero_division=0))
+  print(classification_report(classes_test, predict, zero_division=0))
 
 
 if __name__=='__main__':
-  tipo_classf = 5
+  tipo_classf = 2
   classf_raso(tipo_classf)
   
