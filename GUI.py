@@ -56,7 +56,7 @@ def interface():
     
   button_recorte_img_b = Button(window,
                           text = "Recortar a imagem B", 
-                          command = recorte)  
+                          command = recorte)
     
   button_explore_img_a.grid(column = 0, row = 1) 
   

@@ -9,13 +9,6 @@ import re
 from skimage.feature import graycomatrix, graycoprops
 import pandas as pd 
 
-d = 'teste'
-diretorio_base = "../test"+ d
-
-print(diretorio_base)
-
-
-'''
 # import necessary packages
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -44,8 +37,10 @@ def getListOfFiles(dirName):
 
     return allFiles
 
-imagePaths = getListOfFiles("../img_classf_raso") ## Folder structure: datasets --> sub-folders with labels name
+imagePaths = getListOfFiles("../img_classf_raso_5_classes_KL/test") ## Folder structure: datasets --> sub-folders with labels name
 #print(imagePaths)
+
+f = open('saidas.txt','w')
 
 data = []
 lables = []
@@ -61,11 +56,14 @@ for image in imagePaths:
     #c=c+1
     #print(c)
 
-#print(lables)
+print(lables)
 
 # encode the labels as integer
 data = np.array(data)
 lables = np.array(lables)
+
+#print(data, file=f)
+#print(lables, file=f)
 
 le = LabelEncoder()
 lables = le.fit_transform(lables)
@@ -76,22 +74,27 @@ print(myset)
 dataset_size = data.shape[0]
 data = data.reshape(dataset_size,-1)
 
-f = open('saidas.txt','w')
-
-print(data[0], file=f)
-print(lables, file=f)
-
-print(data.shape)
-print(lables.shape)
-print(dataset_size)
+#print(data.shape)
+#print(lables.shape)
+#print(dataset_size)
 
 (trainX, testX, trainY, testY ) = train_test_split(data, lables, test_size= 0.25, random_state=42)
+'''
+print("TrainX", file=f)
+print(len(trainX), file=f)
+print("TrainY", file=f)
+print(trainY, file=f)
 
+print("TestX", file=f)
+print(len(testX), file=f)
+print("TestY", file=f)
+print(testY, file=f)
+'''
 model = KNeighborsClassifier(n_neighbors=3, n_jobs=-1)
 model.fit(trainX, trainY)
 
 print(classification_report(testY, model.predict(testX), target_names=le.classes_))
-'''
+
 
 '''
 from pathlib import Path

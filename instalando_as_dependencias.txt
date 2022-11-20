@@ -6,6 +6,7 @@ pip install easygui
 pip install numpy
 pip install panda
 pip install sklearn
+pip install resnet
 python -m pip install -U pip setuptools
 python -m pip install matplotlib
 pip install matplotlib
