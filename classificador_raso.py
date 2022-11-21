@@ -1,15 +1,24 @@
+#Componentes do grupo:
+# Dayane Gabriela Santos Cordeiro - 673915 - Engenharia de computação - PUC Minas Coração Eucarístico
+# Paulo Henrique Luiz Pereira - 673667 - Engenharia de computação - PUC Minas Coração Eucarístico
+
 from skimage.feature import graycomatrix, graycoprops
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
+from sklearn.model_selection import GridSearchCV
 from pathlib import Path
 import aumento_de_dados as ad
 import pandas as pd 
 import numpy as np
+import time
 import cv2
 import os
 
 
+#Pré processamento das imagens, gera novas imagens
+#com o histograma equalizado
 def pre_processamento(tipo_classf, tipo_dataset):
   
   if(tipo_classf == 2):
@@ -35,6 +44,8 @@ def pre_processamento(tipo_classf, tipo_dataset):
         ad.histograma_equal(caminho_completo,novo_diretorio)
 
 
+#Reaaliza o cálculo da matriz de co-ocorrencia de níveis de cinza
+#das imagens já com o histograma equalizado
 def gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades):
   #lista contendo os valores das propriedades que serão 
   #calculadas usando a matriz de co-ocorrencia de níveis de cinza
@@ -76,6 +87,8 @@ def gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades):
   return prop_imgs
 
 
+#Exibe todas as propridades calculadas
+#da matriz de co-ocorrencia de niveis de cinza
 def exibir_propriedades(glcm, propriedades):
   colunas = []
   anglulos = ['0', '45', '90','135']
@@ -93,7 +106,7 @@ def exibir_propriedades(glcm, propriedades):
   print(glcm_df)
 
 
-#temos que remodelar os dados para se adequar ao classificador
+#Temos que remodelar os dados para se adequar ao classificador
 def remodelando_dados(glcm):
   dados = []
   classes_dados = []
@@ -112,6 +125,9 @@ def remodelando_dados(glcm):
 
 def classf_raso(tipo_classf):
 
+  f = open("saidas.txt", 'w')
+  start_time = time.time()
+
   train = []
   test = []
   val =[]
@@ -121,8 +137,10 @@ def classf_raso(tipo_classf):
 
   if(tipo_classf == 2):
     k = 18
+    classes = ('0','1')
   elif(tipo_classf == 5):
     k = 28
+    classes = ('0','1','2','3','4')
   
   propriedades = ['contrast', 'dissimilarity', 'homogeneity', 'energy', 'correlation', 'ASM']
   
@@ -141,11 +159,23 @@ def classf_raso(tipo_classf):
   glcm_val = gray_l_co_o_matix(tipo_classf, tipo_dataset, propriedades)
   val, classes_val = remodelando_dados(glcm_val)
 
-  knn_model = KNeighborsClassifier(n_neighbors= k, n_jobs=-1)
+  #Configura o modelo
+  knn_model = KNeighborsClassifier(n_neighbors= k, n_jobs=-2)
+  #Treina o modelo
   knn_model.fit(train, classes_train)
-  predict = knn_model.predict(test)
-  print('\n')
-  print(classification_report(classes_test, predict, zero_division=0))
+  #Realiza a classificação
+  predictions = knn_model.predict(test)
+
+  #Matriz de confusão
+  cm = confusion_matrix(classes_test,predictions)
+  print(cm, file=f)
+  print(file=f)
+
+  #Resultados da classificação
+  print(classification_report(classes_test, predictions, zero_division=0), file=f)
+
+  #Tempo decorrido
+  print("---  %d:%.2d minutes  ---\n" % divmod(time.time() - start_time, 60), file=f)
 
 '''
 if __name__=='__main__':

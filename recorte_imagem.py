@@ -2,21 +2,17 @@
 # Dayane Gabriela Santos Cordeiro - 673915 - Engenharia de computação - PUC Minas Coração Eucarístico
 # Paulo Henrique Luiz Pereira - 673667 - Engenharia de computação - PUC Minas Coração Eucarístico
 
-#Importando a parte Image da biblioteca Pillow
 from ast import main
 from PIL import Image
-
-#Imports necessários do OpenCV
-import cv2
-import numpy as np
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
-
-#Imports necessários do Pygame
 import pygame, sys
 from PIL import Image
+
+
 pygame.init()
+
 
 def displayImage(screen, px, topleft, prior): 
   x, y = topleft
@@ -51,14 +47,18 @@ def displayImage(screen, px, topleft, prior):
   #Retorna as dimensões da região selecionada
   return (x, y, width, height)
 
+
 def setup(path):
+  #Carrega e exibi a imagem a ser recortada
   px = pygame.image.load(path)
   screen = pygame.display.set_mode( px.get_rect()[2:] )
   screen.blit(px, px.get_rect())
   pygame.display.flip()
   return screen, px
 
+
 def mainLoop(screen, px):
+  #Pegando os eventos do mouse
   topleft = bottomright = prior = None
   n=0
   while n!=1:

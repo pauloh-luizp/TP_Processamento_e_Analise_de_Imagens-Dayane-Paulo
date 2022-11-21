@@ -6,16 +6,18 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
+import time
 import math
 import sys
 import cv2
 
-def mapa_dos_pixels(caminho_da_imagem):
 
+def mapa_dos_pixels(caminho_da_imagem):
   #Obtendo o mapa de pixels
   mapa_de_pixels = cv2.imread(caminho_da_imagem,0)
 
   return mapa_de_pixels
+
 
 def obtendo_dimensoes(caminho_da_imagem):
   #Importando a imagem
@@ -27,8 +29,9 @@ def obtendo_dimensoes(caminho_da_imagem):
 
   return(altura, largura)
 
-def desvio_padrao(largura, altura, media, mapa):
 
+def desvio_padrao(largura, altura, media, mapa):
+  #Cálculo do desvio padrão
   somatorio = 0
   dp = 0
 
@@ -40,9 +43,10 @@ def desvio_padrao(largura, altura, media, mapa):
 
   return(dp)
 
+
 def valor_ccn(y0, x0, dp_a, dp_b, mapa_a, mapa_b,
               media_a, media_b, altura_b, largura_b):
-
+  #Calculo do valor de CCN
   somatorio = 0
   ccn = 0
 
@@ -54,7 +58,9 @@ def valor_ccn(y0, x0, dp_a, dp_b, mapa_a, mapa_b,
 
   return(ccn)
 
+
 def posicao_detectada(y0_a, x0_a, altura_b, largura_b, caminho_img_a, caminho_img_b):
+  #Desenha um retângulo na posição em que ocorreu o maior valor de CCN
   y = np.array(Image.open(caminho_img_b), dtype=np.uint8) 
   plt.imshow(y)
   x = np.array(Image.open(caminho_img_a), dtype=np.uint8)
@@ -65,7 +71,13 @@ def posicao_detectada(y0_a, x0_a, altura_b, largura_b, caminho_img_a, caminho_im
   ax.add_patch(rect)
   plt.show()
 
+
 def calc_corr_cruz_ab(caminho_img_a, caminho_img_b):
+  #Abre o arquivo que conterá os resultados e o tempo.
+  #Inicia-se a contagem do tempo
+  f = open("saidas.txt", 'w')
+  start_time = time.time()
+  
   #mapa, altura, largura, média e desvio padrão da imagem A
   mapa_a = mapa_dos_pixels(caminho_img_a)
   altura_a, largura_a = obtendo_dimensoes(caminho_img_a)
@@ -84,7 +96,7 @@ def calc_corr_cruz_ab(caminho_img_a, caminho_img_b):
   x0_ccn_max = 0
   y0_ccn_max = 0
 
-  #Calculando a diferença das dimensões da imagem A coparada com a B
+  #Calculando a diferença das dimensões da imagem A comparada com a B
   dif_alt = altura_a - altura_b
   dif_lar = largura_a - largura_b    
 
@@ -105,8 +117,12 @@ def calc_corr_cruz_ab(caminho_img_a, caminho_img_b):
       y0_ccn_max = xy[0] # Y da coordenada da imagem A
       x0_ccn_max = xy[1] # X da coordenada da imagem A
 
-  print("CCN: " + str(ccn_max))
-  print("x0_ccn_max: " + str(x0_ccn_max))
-  print("y0_ccn_max: " + str(y0_ccn_max))
+  #Salva os resultados no aquivo
+  print("CCN: " + str(ccn_max), file=f)
+  print("x0_ccn_max: " + str(x0_ccn_max), file=f)
+  print("y0_ccn_max: " + str(y0_ccn_max), file=f)
       
   posicao_detectada(y0_ccn_max, x0_ccn_max, altura_b, largura_b, caminho_img_a, caminho_img_b)
+
+  #Tempo decorrido
+  print("\n---  %d:%.2d minutes  ---" % divmod(time.time() - start_time, 60), file=f)

@@ -10,4 +10,3 @@ def selecionando_imagens(img):
                                 default="../TP_PAI-Dayane-Paulo/image/",
                                 filetypes=["*.jpg","*.png"])
   return caminho
-  
