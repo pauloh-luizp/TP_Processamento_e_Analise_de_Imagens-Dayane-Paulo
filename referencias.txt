@@ -1,3 +1,105 @@
+################################# Classificador raso #########################################################
+GitHub - lmoesch/py-glcm: Highly efficient GLCM/X-GLCM feature extractor for python.
+https://github.com/lmoesch/py-glcm
+
+Exploring feature-based approaches in PET images for predicting cancer treatment outcomes - PMC
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2701316/
+
+Complexity curve and grey level co-occurrence matrix in the texture evaluation of breast tumor on ultrasound images. - Abstract - Europe PMC
+https://europepmc.org/article/MED/17388154
+
+Gray-level co-occurrence matrix (with python code)
+https://sourceexample.com/article/en/cad76b26f0627fb94e787be4439f1e05/
+
+Classification of Texture Using Gray Level Co-occurrence Matrix and Self-Organizing Map | IEEE Conference Publication | IEEE Xplore
+https://ieeexplore.ieee.org/document/6745402
+
+GLCM Based Feature Extraction and Medical X-RAY Image Classification using Machine Learning Techniques | IEEE Conference Publication | IEEE Xplore
+https://ieeexplore.ieee.org/document/9066263
+
+Recursos de textura Haralick invariantes de nível cinza - PMC
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6386443/
+
+(PDF) Image Texture Classification using Gray Level Co-Occurrence Matrix Based Statistical Features
+https://www.researchgate.net/publication/267708413_Image_Texture_Classification_using_Gray_Level_Co-Occurrence_Matrix_Based_Statistical_Features
+
+Gray level co-occurrence matrix feature extraction and histogram in breast cancer classification with ultrasonographic imagery | Zenodo
+https://zenodo.org/record/7084778#.Y3UYmXvMK00
+
+Feature-Extraction-Gray-Level-Co-occurrence-Matrix-GLCM-with-Python/Feature_Extraction_Gray_Level_Co_occurrence_Matrix_(GLCM)_with_Python.ipynb at master · alfianhid/Feature-Extraction-Gray-Level-Co-occurrence-Matrix-GLCM-with-Python
+https://github.com/alfianhid/Feature-Extraction-Gray-Level-Co-occurrence-Matrix-GLCM-with-Python/blob/master/Feature_Extraction_Gray_Level_Co_occurrence_Matrix_(GLCM)_with_Python.ipynb
+
+Classificação da Imagem Batik usando Extração de Recurso de Matriz de Co-ocorrência de Nível Cinza e Seleção de Recurso Baseado em Correlação | | de Publicação da Conferência IEEE IEEE Xplore
+https://ieeexplore.ieee.org/abstract/document/8864237
+
+Canny Edge Detection Step by Step in Python — Computer Vision | by Sofiane Sahir | Towards Data Science
+https://towardsdatascience.com/canny-edge-detection-step-by-step-in-python-computer-vision-b49c3a2d8123
+
+machine learning - Use Edge detection in Image classification - Cross Validated
+https://stats.stackexchange.com/questions/158696/use-edge-detection-in-image-classification
+
+Textural Features for Image Classification | IEEE Journals & Magazine | IEEE Xplore
+https://ieeexplore.ieee.org/document/4309314
+
+Correlation-based Feature Selection in Python from Scratch – Johannes S. Fischer
+https://johfischer.com/2021/08/06/correlation-based-feature-selection-in-python-from-scratch/
+
+
+################################# Links usados na parte da CNN ###############################################
+VGG_net/load_binary_data.py at master · KyleGoyette/VGG_net
+https://github.com/KyleGoyette/VGG_net/blob/master/load_binary_data.py
+
+Automating classification of osteoarthritis according to Kellgren-Lawrence in the knee using deep learning in an unfiltered adult population. - Abstract - Europe PMC
+https://europepmc.org/article/MED/34600505
+
+Redes Neurais Convolucionais com Python | Sigmoidal
+https://sigmoidal.ai/redes-neurais-convolucionais-python/
+
+VGG Net | Build VGG Net from Scratch with Python
+https://www.analyticsvidhya.com/blog/2021/06/build-vgg-net-from-scratch-with-python/
+
+1409.1556.pdf
+https://arxiv.org/pdf/1409.1556.pdf
+
+keras/vgg19.py at master · keras-team/keras
+https://github.com/keras-team/keras/blob/master/keras/applications/vgg19.py
+
+Image classification with VGG convolutional neural network using Keras | by Ashima Arora | Analytics Vidhya | Medium
+https://medium.com/analytics-vidhya/image-classification-with-vgg-convolutional-neural-network-using-keras-for-beginners-61767950c5dd
+
+A Comprehensive Guide to Convolutional Neural Networks — the ELI5 way | by Sumit Saha | Towards Data Science
+https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53
+
+Vgg 16 Architecture, Implementation and Practical Use | by Abhay Parashar | The Pythoneers | Medium
+https://medium.com/pythoneers/vgg-16-architecture-implementation-and-practical-use-e0fef1d14557
+
+BoneMarrow2.0 1e57ca | Kaggle
+https://www.kaggle.com/code/shakilrana/bonemarrow2-0-1e57ca
+
+ResNet50 Image Classification in Python | A Name Not Yet Taken AB
+https://www.annytab.com/resnet50-image-classification-in-python/
+
+Sem_rede_neural
+https://www.kaggle.com/code/gpiosenka/notebookf03b3b1161
+
+Transfer Learning using CNN (VGG16).
+https://www.turing.com/kb/transfer-learning-using-cnn-vgg16
+
+Medical X-ray ⚕️ Image Classification using Convolutional Neural Network | by Hardik Deshmukh | Towards Data Science
+https://towardsdatascience.com/medical-x-ray-%EF%B8%8F-image-classification-using-convolutional-neural-network-9a6d33b1c2a
+
+transfer_learning - Colaboratory
+https://colab.research.google.com/github/keras-team/keras-io/blob/master/guides/ipynb/transfer_learning.ipynb#scrollTo=zvg6sZo1bkXV
+
+A guide to transfer learning with Keras using ResNet50 | by Kenneth Cortés Aguas | Medium
+https://medium.com/@kenneth.ca95/a-guide-to-transfer-learning-with-keras-using-resnet50-a81a4a28084b
+
+Keras Tutorial : Fine-tuning pre-trained models | LearnOpenCV
+https://learnopencv.com/keras-tutorial-fine-tuning-using-pre-trained-models/
+
+
+################################# Aprendendo sobre o Python ##################################################
+
 Como ler a imagem em python - Python exemplo de código
 https://pt.code-paper.com/python/examples-how-to-read-image-in-python
 
@@ -10,18 +112,92 @@ https://professor.luzerna.ifc.edu.br/ricardo-antonello/wp-content/uploads/sites/
 🥇 Corte de imagem usando PyGame - Código Fonte
 https://codigofonte.org/corte-de-imagem-usando-pygame/
 
-pygame — pygame v2.1.1 documentation
-https://www.pygame.org/docs/ref/pygame.html
-
 Explorador de arquivos em Python usando Tkinter – Acervo Lima
 https://acervolima.com/explorador-de-arquivos-em-python-usando-tkinter/
 
 Python fileopenbox Examples, easygui.fileopenbox Python Examples - HotExamples
 https://python.hotexamples.com/examples/easygui/-/fileopenbox/python-fileopenbox-function-examples.html
 
-get color of pixel on screen python Code Example
-https://www.codegrepper.com/code-examples/python/get+color+of+pixel+on+screen+python
+Image-Template matching using Cross-Correlation | by Vipin Sharma | MLearning.ai | Medium
+https://medium.com/mlearning-ai/image-template-matching-using-cross-correlation-2f2b8e59f254
 
-ResNet50 Image Classification in Python | A Name Not Yet Taken AB
-https://www.annytab.com/resnet50-image-classification-in-python/
+How to manipulate the pixel values of an image using Python ? - GeeksforGeeks
+https://www.geeksforgeeks.org/how-to-manipulate-the-pixel-values-of-an-image-using-python/
 
+OpenCV Getting and Setting Pixels - PyImageSearch
+https://pyimagesearch.com/2021/01/20/opencv-getting-and-setting-pixels/
+
+python - Count the pixels of specific color intensity in an image - Stack Overflow
+https://stackoverflow.com/questions/57515937/count-the-pixels-of-specific-color-intensity-in-an-image
+
+opencv - Python - Normalized cross-correlation to measure similarites in 2 images - Signal Processing Stack Exchange
+https://dsp.stackexchange.com/questions/28322/python-normalized-cross-correlation-to-measure-similarites-in-2-images
+
+Explaing Cross Correlation and Normalization for openCV's Match Template - Stack Overflow
+https://stackoverflow.com/questions/28506665/explaing-cross-correlation-and-normalization-for-opencvs-match-template
+
+python - matplotlib imshow() and pixel intensity - Stack Overflow
+https://stackoverflow.com/questions/30301986/matplotlib-imshow-and-pixel-intensity
+
+Como desenhar retângulo na imagem no Matplotlib? – Acervo Lima
+https://acervolima.com/como-desenhar-retangulo-na-imagem-no-matplotlib/
+
+Create images with Python PIL and Pillow and write text on them
+https://code-maven.com/create-images-with-python-pil-pillow
+
+Como salvar o resultado de saída de um script Python para um arquivo txt? - Stack Overflow em Português
+https://pt.stackoverflow.com/questions/347936/como-salvar-o-resultado-de-sa%C3%ADda-de-um-script-python-para-um-arquivo-txt
+
+Python - Crie uma lista de tuplas usando o loop for – Acervo Lima
+https://acervolima.com/python-crie-uma-lista-de-tuplas-usando-o-loop-for/
+
+opencv - How to get grayscale image,pixel matrix values within the [0-255] range python - Stack Overflow
+https://stackoverflow.com/questions/33388534/how-to-get-grayscale-image-pixel-matrix-values-within-the-0-255-range-python
+
+How to Draw Rectangles in Matplotlib (With Examples)
+https://www.statology.org/matplotlib-rectangle/
+
+Graphical User Interface with tkinter python - IoTEDU
+https://iot4beginners.com/graphical-user-interface-with-tkinter-python/
+
+Como virar uma imagem horizontalmente ou verticalmente em Python? – Acervo Lima
+https://acervolima.com/como-virar-uma-imagem-horizontalmente-ou-verticalmente-em-python/
+
+Técnicas de processamento digital de imagens no Python com matemática | by Alvaro Leandro Cavalcante Carneiro | Data Hackers | Medium
+https://medium.com/data-hackers/t%C3%A9cnicas-de-processamento-digital-de-imagens-no-python-com-matem%C3%A1tica-154eae204447
+
+Equalização de histograma em Python | by Alvaro Leandro Cavalcante Carneiro | Data Hackers | Medium
+https://medium.com/data-hackers/equaliza%C3%A7%C3%A3o-de-histograma-em-python-378830368d60
+
+Image Classification using CNN : Python Implementation - Analytics Vidhya
+https://www.analyticsvidhya.com/blog/2021/06/image-classification-using-convolutional-neural-network-with-python/
+
+Inside of a Real Human Knee
+https://www.youtube.com/shorts/apgeGD3tRfA
+
+Explorando o aumento de dados de imagem com Keras e Tensorflow - umdados.com
+https://umdados.com/post/explorando-o-aumento-de-dados-de-imagem-com-keras-e-tensorflow/m36451e4a3f347ffd5fc7cd5d
+
+13.1. Aumento de Imagem — Dive into Deep Learning 0.17.1 documentation
+https://pt.d2l.ai/chapter_computer-vision/image-augmentation.html
+
+glob - Python: How to read all files in a directory? - Stack Overflow
+https://stackoverflow.com/questions/26695903/python-how-to-read-all-files-in-a-directory
+
+Encontre um caractere em uma string em Python | Delft Stack
+https://www.delftstack.com/pt/howto/python/position-of-character-in-string/
+
+Automating classification of osteoarthritis according to Kellgren-Lawrence in the knee using deep learning in an unfiltered adult population. - Abstract - Europe PMC
+https://europepmc.org/article/MED/34600505
+
+Processamento Digital de Imagens - Extração de características
+https://1library.org/article/processamento-digital-de-imagens-extra%C3%A7%C3%A3o-de-caracter%C3%ADsticas.zwk16n1z
+
+Interfaces gráficas com Tkinter
+https://python.fei.edu.br/interfaces-tkinter
+
+An Essential Guide to Tkinter Window
+https://www.pythontutorial.net/tkinter/tkinter-window/
+
+Python Tkinter update image - Stack Overflow
+https://stackoverflow.com/questions/28861785/python-tkinter-update-image
