@@ -212,7 +212,7 @@ def resnet50_5classesKL():
   print(file=f)
 
   #Resultados da classificação
-  print(classification_report(test_pre_dataset.classes, y_pred), file=f)
+  print(classification_report(test_pre_dataset.classes, y_pred, zero_division=0), file=f)
 
   #Tempo decorrido e resultados
   print("---  %d:%.2d minutes  ---\n" % divmod(time.time() - start_time, 60), file=f)
